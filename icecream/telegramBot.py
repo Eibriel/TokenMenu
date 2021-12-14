@@ -67,16 +67,16 @@ def main_menu_keyboard():
     keyboard = [[InlineKeyboardButton(selected, callback_data='s1')],
                 # [InlineKeyboardButton('Sentence 2', callback_data='s2')],
                 [
-                    InlineKeyboardButton(tm.word_list[0], callback_data='w0'),
-                    InlineKeyboardButton(tm.word_list[1], callback_data='w1')
+                    InlineKeyboardButton(tm.word_list[0].replace("_", " "), callback_data='w0'),
+                    InlineKeyboardButton(tm.word_list[1].replace("_", " "), callback_data='w1')
                 ],
                 [
-                    InlineKeyboardButton(tm.word_list[2], callback_data='w2'),
-                    InlineKeyboardButton(tm.word_list[3], callback_data='w3')
+                    InlineKeyboardButton(tm.word_list[2].replace("_", " "), callback_data='w2'),
+                    InlineKeyboardButton(tm.word_list[3].replace("_", " "), callback_data='w3')
                 ],
                 [
-                    InlineKeyboardButton(tm.word_list[4], callback_data='w4'),
-                    InlineKeyboardButton(tm.word_list[5], callback_data='w5')
+                    InlineKeyboardButton(tm.word_list[4].replace("_", " "), callback_data='w4'),
+                    InlineKeyboardButton(tm.word_list[5].replace("_", " "), callback_data='w5')
                 ],
                 [
                     InlineKeyboardButton('More ⏩', callback_data='more'),
@@ -91,7 +91,7 @@ def main_menu_keyboard():
 
 def main_menu_message():
     # return 'Selected words: {}\nRemoved words:  {}\nQ: {}'.format(tm.selected_words, tm.removed_words, tm.seller_question)
-    return '{}'.format(tm.seller_question)
+    return '{}{}'.format(tm.seller_question[:1].upper(), tm.seller_question[1:])
 
 
 # Handlers

@@ -208,8 +208,25 @@ class token_menu:
                 match = ["request_payment"]
                 self.state_buyer["request"] = "payment"
             else:
-                self.seller_question = "Here is your icecream!"
+                self.seller_question = "here is your icecream!\n"
+                if self.state_seller["size"] == "one_scoop":
+                    self.seller_question += "One scoop of "
+                elif self.state_seller["size"] == "two_scoops":
+                    self.seller_question += "Two scoops of "
+                for flavor in self.state_seller["flavors"]:
+                    self.seller_question += " {},".format(flavor)
+                if (len(self.state_seller["flavors"]) > 0):
+                    self.seller_question = "{} 🍦".format(self.seller_question[:-1])
+                if self.state_seller["type"] == "one_scoop":
+                    self.seller_question += " in a cup"
+                elif self.state_seller["type"] == "two_scoops":
+                    self.seller_question += " in a cone"
+                if self.state_seller["topping"] == "yes":
+                    self.seller_question += " with sprinkles ✨"
                 return
         frame += match
 
         self.seller_question = self.find_sentence("seller", match, frame)
+        self.seller_question = self.seller_question.replace("  ", "")
+        price = len(self.state_seller["flavors"]) * 3
+        self.seller_question = self.seller_question.replace("$", "${}".format(price))
